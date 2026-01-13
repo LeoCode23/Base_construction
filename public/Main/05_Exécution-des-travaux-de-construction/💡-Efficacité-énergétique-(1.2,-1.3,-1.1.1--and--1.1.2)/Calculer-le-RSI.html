@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><title>Calculer le RSI</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Quartz 4"/><meta property="og:title" content="Calculer le RSI"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Calculer le RSI"/><meta name="twitter:description" content="Calculer le RSI Activer le mode plein écran R.S.I : Valeur de résistance thermique (unité métrique) s’exprimant en (m2 · K) / W La partie 11, Efficacité énergétique, du chapitre I, Bâtiment, du Code de construction, vise à améliorer l’efficacité énergétique des petits bâtiments d’habitations du Québ..."/><meta property="og:description" content="Calculer le RSI Activer le mode plein écran R.S.I : Valeur de résistance thermique (unité métrique) s’exprimant en (m2 · K) / W La partie 11, Efficacité énergétique, du chapitre I, Bâtiment, du Code de construction, vise à améliorer l’efficacité énergétique des petits bâtiments d’habitations du Québ..."/><meta property="og:image:alt" content="Calculer le RSI Activer le mode plein écran R.S.I : Valeur de résistance thermique (unité métrique) s’exprimant en (m2 · K) / W La partie 11, Efficacité énergétique, du chapitre I, Bâtiment, du Code de construction, vise à améliorer l’efficacité énergétique des petits bâtiments d’habitations du Québ..."/><meta property="twitter:domain" content="leocode23.github.io/Base_construction"/><meta property="og:url" content="https://leocode23.github.io/Base_construction/Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Calculer-le-RSI"/><meta property="twitter:url" content="https://leocode23.github.io/Base_construction/Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Calculer-le-RSI"/><link rel="icon" href="../../../static/icon.png"/><meta name="description" content="Calculer le RSI Activer le mode plein écran R.S.I : Valeur de résistance thermique (unité métrique) s’exprimant en (m2 · K) / W La partie 11, Efficacité énergétique, du chapitre I, Bâtiment, du Code de construction, vise à améliorer l’efficacité énergétique des petits bâtiments d’habitations du Québ..."/><meta name="generator" content="Quartz"/><link href="../../../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL1VzZXJzL2dvb2Rtb3JuaW5nL1NpdGVzL3F1YXJ0ei9xdWFydHovY29tcG9uZW50cy9zdHlsZXMiLCJzb3VyY2VzIjpbIm1lcm1haWQuaW5saW5lLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUdGO0VBQ0U7OztBQUtGO0VBQ0U7RUFDQTs7O0FBSUo7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTs7QUFHRjtFQUNFOztBQUlGO0VBQ0U7RUFDQTtFQUNBIiwic291cmNlc0NvbnRlbnQiOlsiLmV4cGFuZC1idXR0b24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsb2F0OiByaWdodDtcbiAgcGFkZGluZzogMC40cmVtO1xuICBtYXJnaW46IDAuM3JlbTtcbiAgcmlnaHQ6IDA7IC8vIE5PVEU6IHJpZ2h0IHdpbGwgYmUgc2V0IGluIG1lcm1haWQuaW5saW5lLnRzXG4gIGNvbG9yOiB2YXIoLS1ncmF5KTtcbiAgYm9yZGVyLWNvbG9yOiB2YXIoLS1kYXJrKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbGlnaHQpO1xuICBib3JkZXI6IDFweCBzb2xpZDtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBvcGFjaXR5OiAwO1xuICB0cmFuc2l0aW9uOiAwLjJzO1xuXG4gICYgPiBzdmcge1xuICAgIGZpbGw6IHZhcigtLWxpZ2h0KTtcbiAgICBmaWx0ZXI6IGNvbnRyYXN0KDAuMyk7XG4gIH1cblxuICAmOmhvdmVyIHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgYm9yZGVyLWNvbG9yOiB2YXIoLS1zZWNvbmRhcnkpO1xuICB9XG5cbiAgJjpmb2N1cyB7XG4gICAgb3V0bGluZTogMDtcbiAgfVxufVxuXG5wcmUge1xuICAmOmhvdmVyID4gLmV4cGFuZC1idXR0b24ge1xuICAgIG9wYWNpdHk6IDE7XG4gICAgdHJhbnNpdGlvbjogMC4ycztcbiAgfVxufVxuXG4jbWVybWFpZC1jb250YWluZXIge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGNvbnRhaW46IGxheW91dDtcbiAgei1pbmRleDogOTk5O1xuICBsZWZ0OiAwO1xuICB0b3A6IDA7XG4gIHdpZHRoOiAxMDB2dztcbiAgaGVpZ2h0OiAxMDB2aDtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogbm9uZTtcbiAgYmFja2Ryb3AtZmlsdGVyOiBibHVyKDRweCk7XG4gIGJhY2tncm91bmQ6IHJnYmEoMCwgMCwgMCwgMC41KTtcblxuICAmLmFjdGl2ZSB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB9XG5cbiAgJiA+ICNtZXJtYWlkLXNwYWNlIHtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG4gICAgcG9zaXRpb246IGZpeGVkO1xuICAgIHRvcDogNTAlO1xuICAgIGxlZnQ6IDUwJTtcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcbiAgICBoZWlnaHQ6IDgwdmg7XG4gICAgd2lkdGg6IDgwdnc7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcblxuICAgICYgPiAubWVybWFpZC1jb250ZW50IHtcbiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgIHRyYW5zZm9ybS1vcmlnaW46IDAgMDtcbiAgICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjFzIGVhc2U7XG4gICAgICBvdmVyZmxvdzogdmlzaWJsZTtcbiAgICAgIG1pbi1oZWlnaHQ6IDIwMHB4O1xuICAgICAgbWluLXdpZHRoOiAyMDBweDtcblxuICAgICAgcHJlIHtcbiAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICBib3JkZXI6IG5vbmU7XG4gICAgICB9XG5cbiAgICAgIHN2ZyB7XG4gICAgICAgIG1heC13aWR0aDogbm9uZTtcbiAgICAgICAgaGVpZ2h0OiBhdXRvO1xuICAgICAgfVxuICAgIH1cblxuICAgICYgPiAubWVybWFpZC1jb250cm9scyB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBib3R0b206IDIwcHg7XG4gICAgICByaWdodDogMjBweDtcbiAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICBnYXA6IDhweDtcbiAgICAgIHBhZGRpbmc6IDhweDtcbiAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICBib3JkZXItcmFkaXVzOiA2cHg7XG4gICAgICBib3gtc2hhZG93OiAwIDJweCA0cHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICAgICAgei1pbmRleDogMjtcblxuICAgICAgLm1lcm1haWQtY29udHJvbC1idXR0b24ge1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICAgICAgd2lkdGg6IDMycHg7XG4gICAgICAgIGhlaWdodDogMzJweDtcbiAgICAgICAgcGFkZGluZzogMDtcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHQpO1xuICAgICAgICBjb2xvcjogdmFyKC0tZGFyayk7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIGZvbnQtZmFtaWx5OiB2YXIoLS1ib2R5Rm9udCk7XG4gICAgICAgIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2U7XG5cbiAgICAgICAgJjpob3ZlciB7XG4gICAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgfVxuXG4gICAgICAgICY6YWN0aXZlIHtcbiAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMXB4KTtcbiAgICAgICAgfVxuXG4gICAgICAgIC8vIFN0eWxlIHRoZSByZXNldCBidXR0b24gZGlmZmVyZW50bHlcbiAgICAgICAgJjpudGgtY2hpbGQoMikge1xuICAgICAgICAgIHdpZHRoOiBhdXRvO1xuICAgICAgICAgIHBhZGRpbmc6IDAgMTJweDtcbiAgICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbiJdfQ== */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://leocode23.github.io/Base_construction/index.xml"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://leocode23.github.io/Base_construction/Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Calculer-le-RSI-og-image.webp"/><meta property="og:image:url" content="https://leocode23.github.io/Base_construction/Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Calculer-le-RSI-og-image.webp"/><meta name="twitter:image" content="https://leocode23.github.io/Base_construction/Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Calculer-le-RSI-og-image.webp"/><meta property="og:image:type" content="image/.webp"/></head><body data-slug="Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Calculer-le-RSI"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../../..">Quartz 4</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Search</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-288"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-288" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../Main/">Main</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../Main/05_Exécution-des-travaux-de-construction/">05_Exécution des travaux de construction</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/">💡 Efficacité énergétique (1.2, 1.3, 1.1.1 &amp; 1.1.2)</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Calculer le RSI</a></div></nav><h1 class="article-title">Calculer le RSI</h1><p show-comma="true" class="content-meta"><time datetime="2026-01-07T13:16:41.775Z">Jan 07, 2026</time><span>15 min read</span></p></div></div><article class="popover-hint"><h3 id="calculer-le-rsi">Calculer le RSI<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#calculer-le-rsi" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Activer le mode plein écran</p>
+<h3 id></h3>
+<h5 id="-1"><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/Calculer_le_RSI.jpg" alt/><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<h5 id="rsi--valeur-de-résistance-thermique-unité-métrique-sexprimant-en-m2--k--w">R.S.I : Valeur de résistance thermique (unité métrique) s’exprimant en (m2 · K) / W<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#rsi--valeur-de-résistance-thermique-unité-métrique-sexprimant-en-m2--k--w" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>La partie 11, Efficacité énergétique, du chapitre I, Bâtiment, du Code de construction, vise à améliorer l’efficacité énergétique des petits bâtiments d’habitations du Québec.</p>
+<p>Les composantes de l’enveloppe du bâtiment doivent respecter les <strong>valeurs de résistance thermique totale</strong> prescrites. Celles-ci sont déterminées en fonction du nombre de degrés-jours de chauffage requis des municipalités où seront implantés les nouveaux bâtiments et les agrandissements visés.</p>
+<p>En plus de la résistance thermique totale, la réglementation exige des <strong>valeurs de couverture des ponts thermiques qui sont</strong> exigées pour les murs hors sol et de sous-sol ainsi que pour les planchers hors sol en porte-à-faux au-dessus d’un espace non chauffé.</p>
+<p><strong>Deux Méthodes de calcul pour obtenir la valeur de Résistance Thermique Effective d’une composante</strong></p>
+<p>Les valeurs de résistances thermiques à utiliser, pour la conception et les calculs, sont :</p>
+<ul>
+<li>Celles résultant de tests conformes à l’une des normes énumérées à la sous-section 9.25.2. — Isolation thermique, effectués par un laboratoire reconnu ; OU</li>
+<li>Les valeurs du Code modèle national de l’énergie pour les habitations (CMNEH).</li>
+</ul>
+<p>La méthode de calcul des valeurs de résistances thermiques doit être une méthode reconnue, telle que celles présentées dans le CMNEH</p>
+<h5 id="valeurs-reconnues">Valeurs reconnues<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#valeurs-reconnues" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p>Un bâtiment conçu et construit en respectant les valeurs de résistance thermique effective minimales spécifiées aux tableaux 1 ou 2 ci-dessous sera considéré,</p>
+<p>comme répondant aux exigences <strong>des articles 11.2.2.1. 1), 11.2.3.1. et 11.2.3.2. de la partie 11, Efficacité énergétique, du chapitre I, Bâtiment, du Code de construction.</strong></p>
+<p>Il ne sera donc pas nécessaire d’acheminer une demande de mesure différente ou équivalente à la RBQ</p>
+<h3 id="vous-êtes-avertis">Vous êtes avertis !<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#vous-êtes-avertis" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Obligation de respecter les exigences décrites aux sections :</p>
+<ul>
+<li>9.25 Contrôle du transfert de chaleur, des fuites d’air et de la condensation et</li>
+<li>9.27 Revêtement extérieur.</li>
+</ul>
+<p>Et aux paragraphes :</p>
+<ul>
+<li>
+<p>9.25.2.3.1 mise en œuvre des isolants de manière à assurer une valeur isolante sensiblement uniforme pour l’ensemble de la surface à isoler</p>
+</li>
+<li>
+<p>9.25.3.1 présence d’un système d’étanchéité offrant une protection ininterrompue contre le passage de l’air</p>
+</li>
+</ul>
+<p><strong>TABLEAU 1 - VALEURS DE RÉSISTANCES THERMIQUES TOTALES ET EFFECTIVE MINIMALES DES BÂTIMENTS SITUÉ DANS UNE MUNICIPALITÉ DONT LE NOMBRE DE DEGRÉS-JOURS SOUS 18****° C EST MOINS DE 6000</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Composante de l’enveloppe du bâtiment</th><th>RSI total exigée</th><th>R totale exigé</th><th>RSI eff accepté</th><th>R eff accepté</th></tr></thead><tbody><tr><td>Mur hors-sol</td><td>4,31</td><td>24,5</td><td>3,7</td><td>21,0</td></tr><tr><td>Mur de fondation</td><td>2,99</td><td>17,0</td><td>2,82</td><td>16</td></tr><tr><td>Plancher hors sol</td><td>5,20</td><td>29,5</td><td>5,02</td><td>28,5</td></tr></tbody></table></div>
+<p><strong>TABLEAU 1 - VALEURS DE RÉSISTANCES THERMIQUES TOTALES ET EFFECTIVE MINIMALES DES BÂTIMENTS SITUÉ DANS UNE MUNICIPALITÉ DONT LE NOMBRE DE DEGRÉS-JOURS SOUS 18****° C EST D’AU MOINS DE 6000</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Composantes de l’enveloppe du bâtiment</th><th>RSI totale exigée</th><th>R totale exigée</th><th>RSI eff acceptée</th><th>R eff acceptée</th></tr></thead><tbody><tr><td>Mur hors sol</td><td>5,11</td><td>29,0</td><td>3,96</td><td>22,5</td></tr><tr><td>Mur de fondation</td><td>2,99</td><td>17,0</td><td>2,82</td><td>16</td></tr><tr><td>Plancher hors sol</td><td>5,20</td><td>29,5</td><td>5,02</td><td>28,5</td></tr></tbody></table></div>
+<h3 id="-2"><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#-2" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<h3 id="r-total">R Total<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#r-total" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/cacul_1.png" alt/></p>
+<h5 id="exemple-de-calcul-de-la-valeur-r-total-dun-mur">Exemple de calcul de la valeur R Total d’un mur<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#exemple-de-calcul-de-la-valeur-r-total-dun-mur" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/calcul_2.png" alt/></p>
+<h3 id="r-effectif">R Effectif<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#r-effectif" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/calcul_3.png" alt/></p>
+<h5 id="exemple-de-calcul-de-la-valeur-r-effectif-dun-mur">Exemple de calcul de la valeur R effectif d’un mur<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#exemple-de-calcul-de-la-valeur-r-effectif-dun-mur" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Composante</th><th>Valeur R vis-à-vis de l’isolant</th><th>Valeur R vis-à-vis de la structure</th></tr></thead><tbody><tr><td>Film d’air extérieur</td><td>R 0,17</td><td>R 0,17</td></tr><tr><td>Brique</td><td>R 0,40</td><td>R 0,40</td></tr><tr><td>Lame d’Air ¾ po</td><td>R 1,02</td><td>R 1,02</td></tr><tr><td>Polystyrène 1 3/16 po</td><td>R 5,00</td><td>R 5,00</td></tr><tr><td>Isolant en natte 5½ po</td><td>R 19,08</td><td>…</td></tr><tr><td>Montants 2X6 à 16 po c/c</td><td>…</td><td>R 6,44</td></tr><tr><td>Lame d’aire ¾ po</td><td>R 1,02</td><td>R 1,02</td></tr><tr><td>Gypse ½ po</td><td>R 0,44</td><td>R 0,44</td></tr><tr><td>Film d’air intérieur</td><td>R 0,68</td><td>R 0,68</td></tr><tr><td><strong>Rtotal</strong></td><td><strong>R 27,81</strong></td><td><strong>R 15,17</strong></td></tr><tr><td>Surface occupée pour calcul</td><td>81%</td><td>19%</td></tr><tr><td><strong>Reffectif</strong></td><td><strong>100 / ((81/R 27,81)+(19/R 15,17)) =</strong></td><td><strong>R 24,03</strong></td></tr></tbody></table></div>
+<h3 id="assemblage-à-ossature-de-bois">Assemblage à ossature de bois<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#assemblage-à-ossature-de-bois" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>La résistance thermique effective des assemblages courants à ossature de bois doit être déterminée à l’aide de la méthode des plans isothermes (série-parallèle).</p>
+<p>La méthode des plans isothermes (série-parallèle) permet de calculer la résistance thermique effective d’un assemblage complet en séparant les éléments qui les composent en deux catégories distinctes :</p>
+<ul>
+<li>Les <strong>couches continues (en série)</strong>, composées de matériaux homogènes qui recouvrent la pleine surface de l’assemblage tels que le revêtement intermédiaire ou la finition intérieure</li>
+<li>Les <strong>couches discontinues (parallèles)</strong>, composées de matériaux qui s’entrecoupent et qui ont des trajectoires parallèles de circulation de la chaleur tels que l’ossature ou la cavité isolée.</li>
+</ul>
+<h5 id="1--représentation-des-couches-continues-et-discontinues-pour-le-calcul-de-la-résistance-thermique-effective-selon-la-méthode-des-plans-isothermes">1 – Représentation des couches continues et discontinues pour le calcul de la résistance thermique effective selon la méthode des plans isothermes<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1--représentation-des-couches-continues-et-discontinues-pour-le-calcul-de-la-résistance-thermique-effective-selon-la-méthode-des-plans-isothermes" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/couche_continues_discontinues.png" alt/></p>
+<h3 id="calcul-par-étapes">Calcul par Étapes<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#calcul-par-étapes" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Le calcul s’effectue selon les étapes suivantes :</p>
+<ul>
+<li>Déterminer la résistance thermique des couches continues (RSI série)</li>
+<li>Consulter le tableau 2 et déterminer la résistance propre à chacun des matériaux posés en continu, en fonction de l’épaisseur spécifique utilisée.</li>
+<li>Déterminer la résistance thermique effective des couches discontinues (RSI parallèle)</li>
+<li>Établir la résistance thermique effective de chacune des couches discontinues à l’aide de la formule du flux thermique parallèle suivante :</li>
+</ul>
+<h5 id="2--formule-du-flux-thermique-parallèle-appliquée-à-une-couche-discontinue">2 – Formule du flux thermique parallèle appliquée à une couche discontinue<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2--formule-du-flux-thermique-parallèle-appliquée-à-une-couche-discontinue" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/formule_flux_thermique_couche_discontinue.png" alt/></p>
+<h3 id="définitions">Définitions<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#définitions" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>Lame d’air compartimentée</strong></p>
+<p>Lorsqu’une lame d’air est compartimentée par un lattage horizontal en bois, il est permis de la considérer comme étant une couche continue et de lui accorder la valeur de résistance thermique attribuable à la lame d’air. La méthode de calcul pour un assemblage à ossature de bois peut aussi s’appliquer à un assemblage en béton. Dans ce cas, la résistance thermique effective (RSI eff) de l’assemblage s’obtient en additionnant simplement la résistance thermique propre à chacune des couches continues.</p>
+<p><strong>RSI parallèle</strong> </p>
+<p>Résistance thermique effective en parallèle d’une couche discontinue</p>
+<p><strong>RSI O</strong> </p>
+<p>Résistance thermique de l’ossature, établie à l’aide des valeurs du tableau 2 .</p>
+<p><strong>RSI C</strong></p>
+<p>Résistance thermique de la cavité (généralement isolée) située entre les éléments d’ossature, établie à l’aide des valeurs du tableau 2.</p>
+<p><strong>% aire O</strong> </p>
+<p>% de surface occupé par l’ossature, établi à l’aide des valeurs du tableau 4(valeur comprise entre 0 et 100)</p>
+<p><strong>% aire C</strong> </p>
+<p>% de surface occupé par la cavité, établi à l’aide des valeurs du tableau 4 (valeur comprise entre 0 et 100).</p>
+<p>Pour les éléments de l’ossature en bois, la valeur à utiliser est généralement celle applicable au groupe d’essences épinette-pin-sapin (spruce-pin-fir), soit 0.0085 (m2 x ºK/W)mm.</p>
+<p>Il s’agit de multiplier cette valeur par la profondeur de l’élément en millimètres pour obtenir la résistance thermique de l’ossature (<strong>RSI O</strong>).</p>
+<ul>
+<li>Déterminer la résistance thermique effective de l’assemblage complet (RSI eff)</li>
+<li>La <strong>r****ésistance thermique effective de l’assemblage complet</strong> s’obtient en additionnant les résultats obtenus lors des deux étapes précédentes, ce qui se traduit par la <strong>formule suivante</strong> :</li>
+</ul>
+<p><strong>RSI eff = RSI parallèle + RSI série</strong></p>
+<p><strong>RSI eff</strong> </p>
+<p>Résistance thermique effective de l’assemblage complet à utiliser afin de déterminer la conformité de cet assemblage avec les valeurs minimales prescrites</p>
+<p><strong>RSI parallèle</strong></p>
+<p>Somme des résistances thermiques effectives des couches discontinues</p>
+<p><strong>RSI série</strong></p>
+<p>Somme des résistances thermiques des couches continues.</p>
+<h3 id="exemple-de-calcul">Exemple de calcul<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#exemple-de-calcul" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Prenons l’assemblage suivant (<strong>3</strong>) :</p>
+<ul>
+<li>Lame d’air 25,4 millimètres (1 pouce)</li>
+<li>Polystyrène expansé de type 3 laminé d’un pare-intempérie 50,8 millimètres (2 pouces)</li>
+<li>Montant en bois de 38 x 140 millimètres (2 x 6) à 406 millimètres (16 pouces) d’entraxe</li>
+<li>Plaque de plâtre 12,7 millimètres (½ pouce)</li>
+<li>Revêtement extérieur en briques</li>
+<li>Isolant en nattes de fibre minérale comprimée RSI 3,52 (R 20)</li>
+<li>Pare-vapeur.</li>
+</ul>
+<h5 id="3--représentation-dune-coupe-de-mur-type-à-ossature-de-bois">3 – Représentation d’une coupe de mur type à ossature de bois<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3--représentation-dune-coupe-de-mur-type-à-ossature-de-bois" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/coupe_mur_ossature_bois.png" alt/></p>
+<ul>
+<li>Déterminer la résistance thermique des couches continues (RSI série)</li>
+<li>Établir les valeurs de résistance thermique des matériaux continus à l’aide du <strong>tableau 2</strong>  (voir l’étape 3 ci-dessus pour les résultats).</li>
+<li>Déterminer la résistance thermique effective des couches discontinues (RSI parallèle)</li>
+</ul>
+<h5 id="4--représentation-des-résistances-thermiques-des-matériaux-alignés-avec-lossature-et-la-cavité-isolée-dun-mur-type-à-ossature-de-bois-pour-la-détermination-de-la-résistance-thermique-effective-des-couches-discontinues-rsi-parallèle">4 – Représentation des résistances thermiques des matériaux alignés avec l’ossature et la cavité isolée d’un mur type à ossature de bois pour la détermination de la résistance thermique effective des couches discontinues (RSI parallèle)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4--représentation-des-résistances-thermiques-des-matériaux-alignés-avec-lossature-et-la-cavité-isolée-dun-mur-type-à-ossature-de-bois-pour-la-détermination-de-la-résistance-thermique-effective-des-couches-discontinues-rsi-parallèle" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/resistance_thermique_materiaux_alignes.png" alt/></p>
+<p>Établir les valeurs de résistance thermique des matériaux à l’aide du tableau 2 :</p>
+<p><strong>RSI O</strong> = 0,0085 (m2 x ºC)/W par mm x 140 mm = RSI 1,19 (R 6,76)</p>
+<p><strong>RSI C</strong> = RSI 3,34 (R 19,0)</p>
+<p>Établir les pourcentages d’aire occupé par l’ossature et par la cavité isolée à l’aide des valeurs du tableau 4  :</p>
+<p>% <strong>aire O</strong> = 23%</p>
+<p>% <strong>aire C</strong> = 77%</p>
+<p>Calculer la résistance thermique effective des couches discontinues à l’aide de la formule du flux thermique parallèle (<strong>5</strong>).</p>
+<h5 id="5--calcul-du-flux-thermique-parallèle-appliqué-aux-couches-discontinues"> 5 – Calcul du flux thermique parallèle appliqué aux couches discontinues<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5--calcul-du-flux-thermique-parallèle-appliqué-aux-couches-discontinues" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/rsi_parallele.png" alt/></p>
+<p>Déterminer la résistance thermique effective de l’assemblage complet. (RSIeff)</p>
+<p>Additionner les valeurs obtenues aux deux étapes précédentes afin de déterminer la résistance thermique effective du mur <strong>(RSI eff)</strong> :</p>
+<p><strong>TABLEAU 3 - COMPILATION DES VALEURS DE RÉSISTANCE THERMIQUE DES COUCHES CONTINUES ET DISCONTINUES POUR L’OBTENTION DE LA VALEUR DE RÉSISTANCE THERMIQUE EFFECTIVE DE L’ASSEMBLAGE COMPLET (RSI EFF)</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Matériaux</th><th>Type de couche</th><th>Épaisseur (RSI/mm)</th><th>RSI</th></tr></thead><tbody><tr><td>Film d’air extérieur</td><td>continue</td><td>Non applicable</td><td>0,03</td></tr><tr><td>Revêtement de briques 100 mm (4 po)</td><td>continue</td><td>100 mm</td><td>0,07</td></tr><tr><td>Lame d’air 25,4 mm (1 po)</td><td>continue</td><td>25,4 mm</td><td>0,18</td></tr><tr><td>Membrane pare-intempérie</td><td>continue</td><td>Non applicable</td><td>Non applicable</td></tr><tr><td>Polystyrène expansé type 3 50,8 mm (2 po)</td><td>continue</td><td>50,8 mm X 0.030</td><td>1,52</td></tr><tr><td>Montants 38 X 140 mm (2 X 6 po) en bois  <br/>fibre minérale en natte comprimée, RSI 3,52 (R 20) 140 mm (6 po)</td><td>discontinue</td><td>RSI parallèle</td><td>2,36</td></tr><tr><td>Polyéthylène (pare-vapeur)</td><td>continue</td><td>Non applicable</td><td>Non applicable</td></tr><tr><td>plaque de plâtre 12,7 mm (½ po)</td><td>continue</td><td>12,7 mm X 0.0061</td><td>0,08</td></tr><tr><td>Film d’air intérieur</td><td>continue</td><td>Non applicable</td><td>0,12</td></tr><tr><td><strong>Total</strong></td><td>Non applicable</td><td>RSI eff</td><td>4,36</td></tr></tbody></table></div>
+<p>Pour obtenir le résultat en valeur R (système impérial), il suffit de multiplier le résultat obtenu en RSI par un facteur de conversion de 5,678 :</p>
+<p><strong>R eff</strong> = RSI eff x 5,678 = 4,36 x 5,678 = 24,76</p>
+<p>La résistance thermique effective de ce mur est donc de RSI eff = 4,36 ou R eff = 24,8</p>
+<h3 id="ne-pas-arrondir-les-valeurs">Ne pas arrondir les valeurs !<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ne-pas-arrondir-les-valeurs" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Les valeurs tirées des tableaux de l’annexe C du CNB 2010 ne doivent pas être arrondies. Seul le résultat final pour la résistance thermique effective de l’assemblage complet (RSI eff) peut être arrondi au chiffre significatif le plus près.</p>
+<h3 id="assemblage-à-ossature-métallique">Assemblage à Ossature Métallique<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#assemblage-à-ossature-métallique" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>La méthode des plans isothermes utilisée pour les assemblages à ossature de bois ne permet pas d’obtenir une précision suffisante lorsque l’ossature principale de l’assemblage est composée de montants métalliques. Dans ce cas, il faut utiliser une règle de calcul pondérée qui se traduit par la formule suivante :</p>
+<p>RSI eff = (K1 x RSI 1) + (K2 x RSI 2)<br/>
+<strong>RSI eff</strong> = résistance thermique effective de l’assemblage complet à utiliser afin de déterminer la conformité de cet assemblage avec les valeurs minimales prescrites</p>
+<p><strong>RSI 1</strong> = résistance thermique effective déterminée à l’aide de la méthode du flux thermique parallèle</p>
+<p><strong>RSI 2</strong> = résistance thermique effective déterminée à l’aide de la méthode des plans isothermes<br/>
+<strong>K1</strong> = coefficient d’ajustement applicable au résultat <strong>RSI 1</strong></p>
+<p><strong>K2</strong> = coefficient d’ajustement applicable au résultat <strong>RSI 2</strong>.</p>
+<p>Les résultats obtenus à l’aide de cette méthode de calcul se comparent bien à ceux obtenus lors d’essais réels. La méthode permet d’obtenir un bon degré de précision en utilisant une valeur de résistance thermique de 0,0000161 (m2 x ºC)/W par millimètre pour l’ossature d’acier.</p>
+<h3 id="calcul-par-étapes-1">Calcul par Étapes<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#calcul-par-étapes-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Le calcul pour cette méthode s’effectue selon les quatre étapes suivantes :</li>
+</ul>
+<p>Déterminer la résistance thermique effective selon la méthode du flux thermique parallèle (RSI 1)<br/>
+Contrairement à la méthode des plans isothermes, la méthode du flux thermique parallèle ne fait aucune distinction entre les couches continues et discontinues de l’assemblage. La formule générale à utiliser pour déterminer la RSI 1 est semblable à celle décrite à l’étape 2 de la méthode de calcul applicable pour l’ossature de bois. Par contre, plutôt que d’utiliser uniquement la résistance thermique des matériaux contenus dans une couche discontinue, la formule doit être appliquée à la totalité des matériaux contenus dans l’assemblage, en fonction de leur position par rapport à l’ossature et la cavité isolée, selon la formule de l’illustration 6.</p>
+<h5 id="6--formule-du-flux-thermique-parallèle-appliquée-à-la-totalité-des-matériaux-contenus-dans-lassemblage">6 – Formule du flux thermique parallèle appliquée à la totalité des matériaux contenus dans l’assemblage<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6--formule-du-flux-thermique-parallèle-appliquée-à-la-totalité-des-matériaux-contenus-dans-lassemblage" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/flux_thermique_parallele.png" alt/></p>
+<p><strong>RSI 1</strong> = résistance thermique effective déterminée à l’aide de la méthode du flux thermique parallèle.</p>
+<p><strong>RSI AO</strong> = somme des résistances thermiques de tous les matériaux alignés avec l’ossature, établie à l’aide des valeurs du tableau 2.</p>
+<p><strong>RSI AC</strong> = somme des résistances thermiques de tous les matériaux alignés avec la cavité isolée, établie à l’aide des valeurs du tableau 2.</p>
+<p><strong>% aire AO</strong> = % de surface occupé par l’ossature, établi à l’aide des valeurs du tableau 5 (valeur comprise entre 0 et 100).</p>
+<p><strong>% aire AC</strong> = % de surface occupé par la cavité, établi à l’aide des valeurs du tableau 5  (valeur comprise entre 0 et 100).</p>
+<ul>
+<li>Déterminer la résistance thermique effective selon la méthode des plans isothermes (RSI2).</li>
+</ul>
+<p>La valeur <strong>RSI 2</strong> correspond à la résistance thermique effective de l’assemblage obtenue par la méthode des plans isothermes.</p>
+<p>Il s’agit d’appliquer les trois étapes décrites précédemment pour la méthode de calcul applicable aux assemblages à ossature de bois, mais en s’assurant d’utiliser les valeurs propres à l’ossature métallique.</p>
+<p>Il faut donc utiliser une valeur de résistance thermique de 0,0000161 (m2 x ºC)/W par millimètre pour l’acier, ainsi que les pourcentages d’aire propres à ce type d’ossature indiqués dans le tableau 5.</p>
+<ul>
+<li>Déterminer les coefficients d’ajustement (K1 et K2)</li>
+</ul>
+<p>Les coefficients d’ajustement <strong>K1</strong> <strong>et K2</strong> sont déterminés à l’aide du tableau 6 de l’annexe C du CNB 2010, en fonction de l’espacement prévu entre les éléments d’ossature.</p>
+<ul>
+<li>Déterminer la résistance thermique effective de l’assemblage complet (RSI eff) Enfin, la résistance thermique effective de l’assemblage complet permettant de déterminer la conformité de celui-ci s’obtient en insérant les résultats obtenus lors des trois étapes précédentes à l’intérieur de la formule pondérée mentionnée initialement, soit: RSI eff = (K1 x RSI1) + (K2 x RSI2)</li>
+</ul>
+<h3 id="exemple-de-calcul-1">Exemple de calcul<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#exemple-de-calcul-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Reprenons le même assemblage mural que celui présenté pour l’ossature de bois, mais avec une ossature d’acier cette fois-ci :</p>
+<ul>
+<li>Lame d’air 25,4 millimètres (1 pouce).</li>
+<li>Polystyrène expansé de type 3 laminé d’un pare-intempérie 50,8 millimètres (2 pouces).</li>
+<li>Montant en acier de 41 x 152 millimètres (2 x 6) à 406 millimètres (16 pouces) d’entraxe.</li>
+<li>Plaque de plâtre 12,7 millimètres (½ pouces).</li>
+<li>Revêtement extérieur en briques.</li>
+<li>Isolant en nattes de fibre minérale comprimée RSI 3,52 (R 20) dans la cavité.</li>
+<li>Pare-vapeur.</li>
+</ul>
+<h5 id="7--représentation-dune-coupe-de-mur-type-à-ossature-métallique">7 – Représentation d’une coupe de mur type à ossature métallique<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7--représentation-dune-coupe-de-mur-type-à-ossature-métallique" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/coupe_mur_ossature_metallique.png" alt/></p>
+<p>Déterminer la résistance thermique effective selon la méthode du flux thermique parallèle (RSI 1)</p>
+<h5 id="8--représentation-des-résistances-thermiques-des-matériaux-alignés-avec-lossature-et-la-cavité-isolée-dun-mur-type-à-ossature-métallique-pour-déterminer-la-résistance-thermique-effective-selon-la-méthode-du-flux-parallèle-rsi1">8 – Représentation des résistances thermiques des matériaux alignés avec l’ossature et la cavité isolée d’un mur type à ossature métallique pour déterminer la résistance thermique effective selon la méthode du flux parallèle (RSI1)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8--représentation-des-résistances-thermiques-des-matériaux-alignés-avec-lossature-et-la-cavité-isolée-dun-mur-type-à-ossature-métallique-pour-déterminer-la-résistance-thermique-effective-selon-la-méthode-du-flux-parallèle-rsi1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/8.png" alt/></p>
+<p>Déterminer les valeurs de résistance thermique des matériaux à l’aide du tableau 2, puis additionner ces valeurs pour tous les matériaux :</p>
+<ul>
+<li>Aligner avec l’ossature afin de déterminer la <strong>RSI AO</strong></li>
+<li>Aligner avec la cavité isolée afin déterminer la <strong>RSI AC</strong></li>
+</ul>
+<p><strong>TABLEAU 4 - COMPILATION DES VALEURS DE RÉSISTANCE THERMIQUE DES MATÉRIAUX ALIGNÉS AVEC L’OSSATURE ET LA CAVITÉ ISOLÉE POUR L’OBTENTION DE LA VALEUR DE RÉSISTANCE THERMIQUE EFFECTIVE SELON LA MÉTHODE DU FLUX THERMIQUE PARALLÈLE(RSI 1)</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Matériaux</th><th>Épaisseur (RSI/mm)</th><th>RSI (aligné avec l’ossature)</th><th>RSI (aligné avec la cavité isolée)</th></tr></thead><tbody><tr><td>Film d’air extérieur</td><td>Non applicable</td><td>0,03</td><td>0,03</td></tr><tr><td>Revêtement de briques 100 mm (4 po)</td><td>100 mm</td><td>0,07</td><td>0,07</td></tr><tr><td>Lame d’air 25,4 mm (1 po)</td><td>25,4 mm</td><td>0,18</td><td>0,18</td></tr><tr><td>Membrane pare-intempérie</td><td>Non applicable</td><td>Non applicable</td><td>Non applicable</td></tr><tr><td>Polystyrène expansé type 3 50,8 mm (2 po)</td><td>50,8 mm X 0,030</td><td>1,52</td><td>1,52</td></tr><tr><td>Montants 41 X 152 mm en acier (2 X 6 po)</td><td>152 mm X 0,000061</td><td>0,0023</td><td>Non applicable</td></tr><tr><td>Fibre minérale en nattes comprimée, RSI 3,52 (R 20) 152 mm (6 po)</td><td>152 mm</td><td>Non applicable</td><td>3,52</td></tr><tr><td>polyéthylène (pare-vapeur)</td><td>Non applicable</td><td>Non applicable</td><td>Non applicable</td></tr><tr><td>plaque de plâtre 12,7 mm (½ po)</td><td>127 mm X 0,0061</td><td>0,08</td><td>0,08</td></tr><tr><td>Film d’air intérieur</td><td>Non applicable</td><td>0,12</td><td>0,12</td></tr><tr><td><strong>Total</strong></td><td></td><td>2,00</td><td>5,52</td></tr></tbody></table></div>
+<p>On obtient ainsi les valeurs suivantes :</p>
+<p><strong>RSI AO</strong> = RSI 2,00 (R 11,4)</p>
+<p><strong>RSI AC</strong> = RSI 5,52 (R 31,3)</p>
+<p>Établir les pourcentages d’aires occupés par l’ossature et par la cavité isolée à l’aide du tableau 5  :</p>
+<p><strong>% aire AO</strong> = 0,77%</p>
+<p><strong>% aire AC</strong> = 99,23%</p>
+<p><strong>Calculer la résistance thermique effective à l’aide de la formule du flux thermique parallèle (RSI 1)</strong></p>
+<h5 id="9--calcul-du-flux-thermique-parallèle-appliqué-à-la-totalité-des-matériaux-contenus-dans-lassemblage">9 – calcul du flux thermique parallèle appliqué à la totalité des matériaux contenus dans l’assemblage<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9--calcul-du-flux-thermique-parallèle-appliqué-à-la-totalité-des-matériaux-contenus-dans-lassemblage" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/calcul_du_flux_thermique_parallèle_appliqué.png" alt/></p>
+<p><strong>Déterminer la résistance thermique effective selon la méthode des plans isothermes (RSI 2)</strong></p>
+<p><strong>Déterminer la résistance thermique effective propre aux couches discontinues (RSI parallèle)</strong></p>
+<h5 id="10--représentation-des-résistances-thermiques-des-matériaux-alignés-avec-lossature-et-la-cavité-isolée-dun-mur-type-à-ossature-métallique-pour-déterminer-la-résistance-thermique-effective-des-couches-discontinues-rsi-parallèle">10 – Représentation des résistances thermiques des matériaux alignés avec l’ossature et la cavité isolée d’un mur type à ossature métallique pour déterminer la résistance thermique effective des couches discontinues (RSI parallèle)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10--représentation-des-résistances-thermiques-des-matériaux-alignés-avec-lossature-et-la-cavité-isolée-dun-mur-type-à-ossature-métallique-pour-déterminer-la-résistance-thermique-effective-des-couches-discontinues-rsi-parallèle" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/resistance_thermique_materiaux_alignes(1).png" alt/></p>
+<p>Établir les valeurs de résistance thermique des matériaux à l’aide du tableau 2 :</p>
+<p><strong>RSI O</strong> = 0,0000161 (m2 x ºC)/W par mm x 152 mm = RSI 0.0024 (R 0,014)</p>
+<p><strong>RSI C</strong> = RSI 3,52 (R 20,0)</p>
+<p>Établir les pourcentages d’aire occupés par l’ossature et par la cavité isolée à l’aide des valeurs du tableau 4  :</p>
+<p><strong>% aire O</strong> = 0,77%</p>
+<p><strong>% aire C</strong> = 99,23%</p>
+<p><strong>Calculer la résistance thermique effective des couches discontinues à l’aide de la formule du flux thermique parallèle</strong></p>
+<h5 id="11--calcul-du-flux-thermique-parallèle-appliqué-aux-couches-discontinues">11 – calcul du flux thermique parallèle appliqué aux couches discontinues<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11--calcul-du-flux-thermique-parallèle-appliqué-aux-couches-discontinues" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h5>
+<p><img src="../../../Main/05_Exécution-des-travaux-de-construction/💡-Efficacité-énergétique-(1.2,-1.3,-1.1.1--and--1.1.2)/Attachments/1_–calcul_du_flux_thermique_parallele.png" alt/></p>
+<p>Additionner cette valeur de résistance thermique propre aux couches discontinues <strong>(RSI parallèle)</strong> avec celles des couches continues prédéterminées lors de la première étape :</p>
+<p><strong>TABLEAU 5 - COMPILATION DES VALEURS DE RÉSISTANCE THERMIQUE DES COUCHES DISCONTINUES ET CONTINUES POUR L’OBTENTION DE LA VALEUR DE RÉSISTANCE THERMIQUE EFFECTIVE SELON LA MÉTHODE DES PLANS ISOTHERMES (RSI 2)</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Matériaux</th><th>Type de couche</th><th>Épaisseur (RSI/mm)</th><th>RSI</th></tr></thead><tbody><tr><td>Film d’air extérieur</td><td>continue</td><td>Non applicable</td><td>0,03</td></tr><tr><td>Revêtement de brique 100 mm (4 po)</td><td>continue</td><td>100 mm</td><td>0,07</td></tr><tr><td>Lame d’aire 25,4 mm (1 po)</td><td>continue</td><td>25,4 mm</td><td>0,18</td></tr><tr><td>Membrane pare-intempérie</td><td>continue</td><td>Non applicable</td><td>Non applicable</td></tr><tr><td>Polystyrène expansé type 3, 50,8 mm (2 po)</td><td>continue</td><td>50,8 mm X 0,030</td><td>1,52</td></tr><tr><td>Montants 41 X 152 mm en acier (2 X 6) Fibre minérale en nattes comprimée, RSI 3,52 (R 20) 152 mm (6 po)</td><td>discontinue</td><td>RSI parallèle</td><td>0,29</td></tr><tr><td>Polyéthylène (pare-vapeur)</td><td>continue</td><td>Non applicable</td><td>Non applicable</td></tr><tr><td>Plaque de plâtre 12,7 mm (½ po)</td><td>continue</td><td>12,7 mm X 0,0061</td><td>0,08</td></tr><tr><td>Film d’air intérieur</td><td>continue</td><td>Non applicable</td><td>0,12</td></tr><tr><td><strong>Total</strong></td><td>Non applicable</td><td>RSI eff</td><td>2,29</td></tr></tbody></table></div>
+<p>La valeur de résistance thermique effective obtenue par la méthode des plans isothermes <strong>(RSI 2)</strong> est donc de <strong>RSI 2,29 (R 13,0)</strong></p>
+<p>Puis, déterminer les coefficients d’ajustement (K1 et K2)</p>
+<p>À l’aide du tableau 6, on obtient les valeurs suivantes pour un assemblage d’entraxe inférieur à 500 millimètres comportant un revêtement intermédiaire isolant :</p>
+<p>K1 = 0,40 et K2 = 0,60</p>
+<p>Déterminer enfin la résistance thermique effective de l’assemblage complet (RSI eff)</p>
+<p>Calculer la résistance thermique effective de l’assemblage complet en insérant les valeurs déterminées lors des trois étapes précédentes à l’intérieur de la formule pondérée propre à l’ossature métallique :</p>
+<p>RSI eff = (K1 x RSI1) + (K2 x RSI2) = (0,40 x 5,46) + (0,60 x 2,29) = 3,56</p>
+<p>R eff = RSI eff x 5,678 = 3,56 x 5,678 = 20,21</p>
+<p>La résistance thermique effective de ce mur est donc de RSI eff = 3,56 ou R eff = 20,2</p>
+<h3 id="ne-pas-arrondir-les-valeurs-1">Ne pas arrondir les valeurs !<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ne-pas-arrondir-les-valeurs-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Les valeurs tirées des tableaux ne doivent pas être arrondies. Seul le résultat final pour la résistance thermique effective de l’assemblage complet (RSI eff) peut être arrondi au chiffre significatif le plus près.</p></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-211" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#calculer-le-rsi" data-for="calculer-le-rsi">Calculer le RSI</a></li><li class="depth-0"><a href="#" data-for></a></li><li class="depth-0"><a href="#vous-êtes-avertis" data-for="vous-êtes-avertis">Vous êtes avertis !</a></li><li class="depth-0"><a href="#-1" data-for="-1"></a></li><li class="depth-0"><a href="#r-total" data-for="r-total">R Total</a></li><li class="depth-0"><a href="#r-effectif" data-for="r-effectif">R Effectif</a></li><li class="depth-0"><a href="#assemblage-à-ossature-de-bois" data-for="assemblage-à-ossature-de-bois">Assemblage à ossature de bois</a></li><li class="depth-0"><a href="#calcul-par-étapes" data-for="calcul-par-étapes">Calcul par Étapes</a></li><li class="depth-0"><a href="#définitions" data-for="définitions">Définitions</a></li><li class="depth-0"><a href="#exemple-de-calcul" data-for="exemple-de-calcul">Exemple de calcul</a></li><li class="depth-0"><a href="#ne-pas-arrondir-les-valeurs" data-for="ne-pas-arrondir-les-valeurs">Ne pas arrondir les valeurs !</a></li><li class="depth-0"><a href="#assemblage-à-ossature-métallique" data-for="assemblage-à-ossature-métallique">Assemblage à Ossature Métallique</a></li><li class="depth-0"><a href="#calcul-par-étapes-1" data-for="calcul-par-étapes-1">Calcul par Étapes</a></li><li class="depth-0"><a href="#exemple-de-calcul-1" data-for="exemple-de-calcul-1">Exemple de calcul</a></li><li class="depth-0"><a href="#ne-pas-arrondir-les-valeurs-1" data-for="ne-pas-arrondir-les-valeurs-1">Ne pas arrondir les valeurs !</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Backlinks</h3><ul id="list-2" class="overflow"><li><a href="../../../" class="internal">Index</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../../postscript.js" type="module" data-persist="true"></script></html>
